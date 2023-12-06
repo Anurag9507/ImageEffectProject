@@ -1,6 +1,7 @@
 package com.iiitb.imageEffectApplication.service;
 
 import com.iiitb.imageEffectApplication.libraryInterfaces.BrightnessInterface;
+import com.iiitb.imageEffectApplication.libraryInterfaces.ContrastInterface;
 import com.iiitb.imageEffectApplication.libraryInterfaces.Pixel;
 import com.iiitb.imageEffectApplication.utils.ProcessingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,7 @@ public class PhotoEffectService {
             // ACTUAL WORK STARTS HERE
 
             // TODO
-            Pixel[][] modifiedImage = inputImage; // Replace this with actual modified image
+            Pixel[][] modifiedImage = ContrastInterface.applyContrast(inputImage, amount); // Replace this with actual modified image
 
             // ACTUAL WORK ENDS HERE
 
