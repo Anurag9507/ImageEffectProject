@@ -1,5 +1,5 @@
 CC = g++
-JAVA_HOME = usr/lib/jvm/java-17-openjdk-amd64
+JAVA_HOME = /usr/lib/jvm/java-17-openjdk-amd64
 
 HUE_SATURATION_LIBRARY_DESTINATION = ./src/Libraries/HueSaturationLibrary
 HUE_SATURATION_CPP_SRC = ./src/Libraries/HueSaturationLibrary/HueSaturation.cpp ./src/Libraries/HueSaturationLibrary/HueSaturationInterface.cpp
