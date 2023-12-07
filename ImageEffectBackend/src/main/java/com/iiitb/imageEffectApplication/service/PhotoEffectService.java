@@ -2,12 +2,14 @@ package com.iiitb.imageEffectApplication.service;
 
 import com.iiitb.imageEffectApplication.libraryInterfaces.BrightnessInterface;
 import com.iiitb.imageEffectApplication.libraryInterfaces.ContrastInterface;
+import com.iiitb.imageEffectApplication.libraryInterfaces.HueSaturationInterface;
 import com.iiitb.imageEffectApplication.libraryInterfaces.Pixel;
 import com.iiitb.imageEffectApplication.utils.ProcessingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.HttpRequestHandlerServlet;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
@@ -29,7 +31,7 @@ public class PhotoEffectService {
             // ACTUAL WORK STARTS HERE
 
             // TODO
-            Pixel[][] modifiedImage = inputImage; // Replace this with actual modified image
+            Pixel[][] modifiedImage = HueSaturationInterface.applyHueSaturation(inputImage, saturationAmount, saturationAmount); // Replace this with actual modified image
 
             // ACTUAL WORK ENDS HERE
 
