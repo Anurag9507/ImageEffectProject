@@ -3,5 +3,5 @@
 #include "../Pixel.h"
 #include <vector>
 using namespace std;
-
+void applyGaussianBlur(vector<vector<Pixel>>& image, float radius);
 #endif
