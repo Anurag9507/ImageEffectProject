@@ -2,6 +2,7 @@
 #include "Rotation.h"
 #include "../Pixel.h"
 #include <vector>
+#include<bits/stdc++.h>
 using namespace std;
 
 JNIEXPORT jobjectArray JNICALL Java_com_iiitb_imageEffectApplication_libraryInterfaces_RotationInterface_applyRotation
@@ -53,15 +54,16 @@ JNIEXPORT jobjectArray JNICALL Java_com_iiitb_imageEffectApplication_libraryInte
 
 
 
-    // Call the function here
+    // Call the function here, here the pure C++ functions will be called which are declared in the above .cpp file, this file is actually like a layer
+    //of abstraction between our native code (C++) and our java code (middle ware)
     // TODO
+    applyRotation(imageVector, value);
 
 
 
 
 
-
-
+    //here the code translates the 2Dpixel vector back back to java pixel 2D array
 
     int nrows = imageVector.size();
     int ncols = imageVector[0].size();

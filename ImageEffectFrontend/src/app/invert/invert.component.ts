@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { PhotoEffectService } from '../_services/photo-effect.service';
 
@@ -37,8 +37,9 @@ export class InvertComponent implements OnInit {
 
   downloadResultImage(): void {
     if (this.resultImageUrl) {
+      const url = this.sanitizer.sanitize(SecurityContext.URL, this.resultImageUrl);
       const link = document.createElement('a');
-      link.href = <string>this.resultImageUrl;
+      link.href = <string>url;
       link.download = 'result_image.png';
       document.body.appendChild(link);
       link.click();
