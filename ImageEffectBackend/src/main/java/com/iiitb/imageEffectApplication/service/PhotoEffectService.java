@@ -1,5 +1,6 @@
 package com.iiitb.imageEffectApplication.service;
-
+import com.iiitb.imageEffectApplication.effectImplementation.*;
+import com.iiitb.imageEffectApplication.exception.IllegalParameterException;
 import com.iiitb.imageEffectApplication.libraryInterfaces.*;
 import com.iiitb.imageEffectApplication.utils.ProcessingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,9 @@ public class PhotoEffectService {
 
 
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = HueSaturationInterface.applyHueSaturation(inputImage, saturationAmount, saturationAmount); // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = HueSaturationInterface.applyHueSaturation(inputImage,saturationAmount, saturationAmount); 
             // ACTUAL WORK ENDS HERE
-
-
             return processingUtils.postProcessing(modifiedImage);
 
         } catch (IOException e) {
@@ -46,17 +43,10 @@ public class PhotoEffectService {
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
 
-
-
-
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = BrightnessInterface.applyBrightness(inputImage, amount); // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = BrightnessInterface.applyBrightness(inputImage, amount); 
             // ACTUAL WORK ENDS HERE
-
-
 
             return processingUtils.postProcessing(modifiedImage);
 
@@ -70,18 +60,17 @@ public class PhotoEffectService {
         try {
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-
-
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = ContrastInterface.applyContrast(inputImage, amount); // Replace this with actual modified image
-
+            contrastImplementation obj = new contrastImplementation();
+            try{
+                obj.setParameterValue(amount);
+            }
+            catch (IllegalParameterException e){
+                e.printStackTrace();
+            }
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService); 
             // ACTUAL WORK ENDS HERE
-
-
-
             return processingUtils.postProcessing(modifiedImage);
 
         } catch (IOException e) {
@@ -95,17 +84,10 @@ public class PhotoEffectService {
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
 
-
-
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = FlipInterface.applyFlip(inputImage,horizontalFlipValue,verticalFlipValue); // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = FlipInterface.applyFlip(inputImage,horizontalFlipValue,verticalFlipValue); 
             // ACTUAL WORK ENDS HERE
-
-
-
 
             return processingUtils.postProcessing(modifiedImage);
 
@@ -120,15 +102,10 @@ public class PhotoEffectService {
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
 
-
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = GaussianBlurInterface.applyGaussianBlur(inputImage,radius); // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = GaussianBlurInterface.applyGaussianBlur(inputImage,radius); 
             // ACTUAL WORK ENDS HERE
-
-
 
             return processingUtils.postProcessing(modifiedImage);
 
@@ -137,7 +114,7 @@ public class PhotoEffectService {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    //========================================//
+
     public ResponseEntity<byte[]> applyGrayscaleEffect(MultipartFile imageFile) {
         try {
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
@@ -145,10 +122,8 @@ public class PhotoEffectService {
 
 
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = GrayscaleInterface.applyGrayscale(inputImage); // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = GrayscaleInterface.applyGrayscale(inputImage); 
             // ACTUAL WORK ENDS HERE
 
             return processingUtils.postProcessing(modifiedImage);
@@ -165,10 +140,8 @@ public class PhotoEffectService {
             String imageName = imageFile.getOriginalFilename();
 
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = inputImage; // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = InvertInterface.applyInvert(inputImage); 
             // ACTUAL WORK ENDS HERE
 
             return processingUtils.postProcessing(modifiedImage);
@@ -186,11 +159,8 @@ public class PhotoEffectService {
 
 
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            // System.out.println(value);
-            Pixel[][] modifiedImage = RotationInterface.applyRotation(inputImage, value); // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = RotationInterface.applyRotation(inputImage, value); 
             // ACTUAL WORK ENDS HERE
 
             return processingUtils.postProcessing(modifiedImage);
@@ -200,17 +170,15 @@ public class PhotoEffectService {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    //=========================================//
+
     public ResponseEntity<byte[]> applySepiaEffect(MultipartFile imageFile) {
         try {
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
 
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = SepiaInterface.applySepia(inputImage); // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = SepiaInterface.applySepia(inputImage); 
             // ACTUAL WORK ENDS HERE
 
             return processingUtils.postProcessing(modifiedImage);
@@ -227,10 +195,8 @@ public class PhotoEffectService {
             String imageName = imageFile.getOriginalFilename();
 
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = SharpenInterface.applySharpen(inputImage, amount); // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = SharpenInterface.applySharpen(inputImage, amount); 
             // ACTUAL WORK ENDS HERE
 
             return processingUtils.postProcessing(modifiedImage);
@@ -247,10 +213,8 @@ public class PhotoEffectService {
             String imageName = imageFile.getOriginalFilename();
 
             // ACTUAL WORK STARTS HERE
-
             // TODO
-            Pixel[][] modifiedImage = inputImage; // Replace this with actual modified image
-
+            Pixel[][] modifiedImage = inputImage; 
             // ACTUAL WORK ENDS HERE
 
             return processingUtils.postProcessing(modifiedImage);

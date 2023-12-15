@@ -1,8 +1,6 @@
 package com.iiitb.imageEffectApplication.libraryInterfaces;
 
 
-
-
 public class ContrastInterface {
     static {
         String libraryPath = "ContrastLib";
