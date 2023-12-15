@@ -42,15 +42,15 @@ void applyRotation(vector<vector<Pixel>>& image, int value) {
         cout<<endl;
     }
 
-    if(value==90) {
+    if(value==1) {
         rotateBy90(image);
         
     }
-    else if(value==180) {
+    else if(value==2) {
         rotateBy90(image);
         rotateBy90(image);
     }
-    else if(value==270) {
+    else if(value==3) {
         rotateBy90(image);
         rotateBy90(image);
         rotateBy90(image);

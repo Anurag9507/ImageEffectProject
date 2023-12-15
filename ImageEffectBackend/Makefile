@@ -142,7 +142,8 @@ $(INVERT_JNI_HEADER): $(INVERT_JAVA_SRC)
 
 
 $(ROTATION_LIB_NAME): $(ROTATION_CPP_SRC) $(ROTATION_JNI_HEADER)
-	$(CC) -shared -o $@ $(ROTATION_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	g++ -shared -o src/main/resources/RotationLib ./src/Libraries/RotationLibrary/Rotation.cpp ./src/Libraries/RotationLibrary/RotationInterface.cpp -I/usr/lib/jvm/java-17-openjdk-amd64/include -I/usr/lib/jvm/java-17-openjdk-amd64/include/darwin -I/usr/lib/jvm/java-17-openjdk-amd64/include/linux -fPIC
+
 
 $(ROTATION_JNI_HEADER): $(ROTATION_JAVA_SRC)
 	javac -cp ./src/main/java -h $(ROTATION_LIBRARY_DESTINATION) $(ROTATION_JAVA_SRC)
