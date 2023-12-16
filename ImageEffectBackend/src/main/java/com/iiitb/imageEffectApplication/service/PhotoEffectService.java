@@ -45,7 +45,16 @@ public class PhotoEffectService {
 
             // ACTUAL WORK STARTS HERE
             // TODO
-            Pixel[][] modifiedImage = BrightnessInterface.applyBrightness(inputImage, amount); 
+            brightnessImplementation obj =new brightnessImplementation();
+            try
+            {
+                obj.setParameterValue(amount);
+            }
+            catch(IllegalParameterException e)
+            {
+                e.printStackTrace();
+            }
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService); 
             // ACTUAL WORK ENDS HERE
 
             return processingUtils.postProcessing(modifiedImage);
