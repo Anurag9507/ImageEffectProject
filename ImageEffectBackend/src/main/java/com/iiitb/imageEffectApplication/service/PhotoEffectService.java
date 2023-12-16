@@ -214,7 +214,7 @@ public class PhotoEffectService {
 
             // ACTUAL WORK STARTS HERE
             // TODO
-            Pixel[][] modifiedImage = inputImage; 
+            Pixel[][] modifiedImage = DominantColourInterface.applyDominantColour(inputImage); 
             // ACTUAL WORK ENDS HERE
 
             return processingUtils.postProcessing(modifiedImage);

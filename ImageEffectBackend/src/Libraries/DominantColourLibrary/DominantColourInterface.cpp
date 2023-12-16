@@ -45,7 +45,8 @@ JNIEXPORT jobjectArray JNICALL Java_libraryInterfaces_DominantColourInterface_ap
     }
 
 // Call the function here
-    // TODO
+// TODO
+applyDominantColour(imageVector);
 
     jobjectArray resultArray = env->NewObjectArray(rows, pixelArrayClass, nullptr);
 
