@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     com_iiitb_imageEffectApplication_libraryInterfaces_DominantColourInterface
  * Method:    applyDominantColour
- * Signature: ([[Lcom/iiitb/imageEffectApplication/libraryInterfaces/Pixel;F)[[Lcom/iiitb/imageEffectApplication/libraryInterfaces/Pixel;
+ * Signature: ([[Lcom/iiitb/imageEffectApplication/libraryInterfaces/Pixel;)[[Lcom/iiitb/imageEffectApplication/libraryInterfaces/Pixel;
  */
 JNIEXPORT jobjectArray JNICALL Java_com_iiitb_imageEffectApplication_libraryInterfaces_DominantColourInterface_applyDominantColour
-  (JNIEnv *, jclass, jobjectArray, jfloat);
+  (JNIEnv *, jclass, jobjectArray);
 
 #ifdef __cplusplus
 }

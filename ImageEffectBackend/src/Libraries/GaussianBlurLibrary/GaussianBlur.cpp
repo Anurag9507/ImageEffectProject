@@ -1,9 +1,11 @@
 #include "../Pixel.h"
 #include "GaussianBlur.h"
-#include<bits/stdc++.h>
+#include <vector>
+#include <algorithm>
+#include <cmath>
 using namespace std;
 void applyGaussianBlur(vector<vector<Pixel>>& image, float radius){
-    radius /= 3;
+    radius /= 4;
     int nr = image.size();
     int nc = image[0].size();                                                          
     vector<vector<Pixel>> blurredImage(nr, vector<Pixel>(nc,Pixel{0,0,0}));
@@ -32,9 +34,9 @@ void applyGaussianBlur(vector<vector<Pixel>>& image, float radius){
                     }
                 }
             }
-            blurredImage[i][j].r = int(rA);
-            blurredImage[i][j].g = int(gA);
-            blurredImage[i][j].b = int(bA);
+            blurredImage[i][j].r = clamp(int(rA),0,255);
+            blurredImage[i][j].g = clamp(int(gA),0,255);
+            blurredImage[i][j].b = clamp(int(bA),0,255);
         }
     }
     image = blurredImage;

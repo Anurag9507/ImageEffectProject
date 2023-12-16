@@ -4,7 +4,7 @@
 #include <vector>
 #include <math.h>
 using namespace std;
-void applyHueSaturation(vector<vector<Pixel>> &image,float sv,float hv){
+void applyHueSaturation(vector<vector<Pixel>> &image,float hv,float sv){
     float s = max(0.0,min(1.0,sv/100.0));
     float h = hv*3.6;
     for (int i=0; i<image.size(); i++){

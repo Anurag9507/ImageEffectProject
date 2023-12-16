@@ -1,8 +1,4 @@
 package com.iiitb.imageEffectApplication.libraryInterfaces;
-
-
-
-
 public class GaussianBlurInterface {
     static {
         String libraryPath = "GaussianBlurLib";

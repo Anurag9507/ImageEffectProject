@@ -1,5 +1,4 @@
 package com.iiitb.imageEffectApplication.libraryInterfaces;
-
 public class BrightnessInterface {
     static {
         String libraryPath = "BrightnessLib";

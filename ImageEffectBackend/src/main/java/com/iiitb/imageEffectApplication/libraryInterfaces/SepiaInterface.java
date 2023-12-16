@@ -1,8 +1,4 @@
 package com.iiitb.imageEffectApplication.libraryInterfaces;
-
-
-
-
 public class SepiaInterface {
     static {
         String libraryPath = "SepiaLib";

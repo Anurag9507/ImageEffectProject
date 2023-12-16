@@ -3,5 +3,5 @@
 #include "../Pixel.h"
 #include<vector>
 using namespace std;
-void applyHueSaturation(vector<vector<Pixel>> &image,float sv,float hv);
+void applyHueSaturation(vector<vector<Pixel>> &image,float hv,float sv);
 #endif

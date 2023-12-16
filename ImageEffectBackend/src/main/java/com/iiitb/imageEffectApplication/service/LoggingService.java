@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,24 +13,23 @@ import java.io.IOException;
 
 @Service
 public class LoggingService {
+
     public void addLog(String fileName, String effectName, String optionValues) {
         LocalDateTime localDateTime = LocalDateTime.now();
         String currentTime = localDateTime.toString();
         try{
-            File logFile = new File("logfile.txt");
             FileWriter fileWriter = new FileWriter("logfile.txt", true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(fileName + " " + effectName + " " + optionValues + " " + currentTime);
+            bufferedWriter.write(fileName + " / " + effectName + " / " + optionValues + " / " + currentTime);
             bufferedWriter.newLine();
             bufferedWriter.close();
             fileWriter.close();
         }
         catch (IOException e){
-            System.out.println("Exception occurred while writing to log file.");
-            System.out.println(e);
+            e.printStackTrace();
         }
-        return;
     }
+
     public List<LogModel> getAllLogs() {
         List<LogModel> allLogs = new ArrayList<LogModel>();
         try{
@@ -40,7 +38,7 @@ public class LoggingService {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null){
-                String sp[] = line.split(" ");
+                String sp[] = line.split(" / ");
                 String fileName = sp[0];
                 String effectName = sp[1];
                 String optionValues = sp[2];
@@ -48,13 +46,14 @@ public class LoggingService {
                 LogModel logModel = new LogModel(timestamp, fileName, effectName, optionValues);
                 allLogs.add(logModel);
             }
+            bufferedReader.close();
         }
         catch (IOException e){
-            System.out.println("Error occurred while reading log file.");
-            System.out.println(e);
+            e.printStackTrace();
         }
         return allLogs;
     }
+
     public List<LogModel> getLogsByEffect(String effectName) {
         List<LogModel> logsByEffect = new ArrayList<LogModel>();
         try{
@@ -63,7 +62,7 @@ public class LoggingService {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null){
-                String sp[] = line.split(" ");
+                String sp[] = line.split(" / ");
                 String fileName = sp[0];
                 String effect = sp[1];
                 String optionValues = sp[2];
@@ -73,23 +72,23 @@ public class LoggingService {
                     logsByEffect.add(logModel);
                 }
             }
+            bufferedReader.close();
         }
         catch (IOException e){
-            System.out.println("Error occurred while reading log file.");
-            System.out.println(e);
+            e.printStackTrace();
         }
         return logsByEffect;
     }
+
     public void clearLogs() {
         try{
             new FileWriter("logfile.txt", false).close();
         }
         catch (IOException e){
-            System.out.println("Error occurred while deleting logs.");
-            System.out.println(e);
+            e.printStackTrace();
         }
-        return;
     }
+
     public List<LogModel> getLogsBetweenTimestamps(LocalDateTime startTime, LocalDateTime endTime) {
         List<LogModel> logsBetweenTimestamps= new ArrayList<LogModel>();
         try{
@@ -98,7 +97,7 @@ public class LoggingService {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null){
-                String sp[] = line.split(" ");
+                String sp[] = line.split(" / ");
                 String fileName = sp[0];
                 String effectName = sp[1];
                 String optionValues = sp[2];
@@ -109,10 +108,10 @@ public class LoggingService {
                     logsBetweenTimestamps.add(logModel);
                 }
             }
+            bufferedReader.close();
         }
         catch (IOException e){
-            System.out.println("Error occurred while reading log file.");
-            System.out.println(e);
+            e.printStackTrace();
         }
         return logsBetweenTimestamps;
     }

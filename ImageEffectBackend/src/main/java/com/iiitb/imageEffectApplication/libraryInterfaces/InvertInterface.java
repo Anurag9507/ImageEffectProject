@@ -1,8 +1,4 @@
 package com.iiitb.imageEffectApplication.libraryInterfaces;
-
-
-
-
 public class InvertInterface {
     static {
         String libraryPath = "InvertLib";

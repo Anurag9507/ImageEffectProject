@@ -1,5 +1,4 @@
 package com.iiitb.imageEffectApplication.libraryInterfaces;
-
 public class DominantColourInterface {
     static {
         String libraryPath = "DominantColourLib";

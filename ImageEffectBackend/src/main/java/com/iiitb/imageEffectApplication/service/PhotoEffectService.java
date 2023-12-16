@@ -7,71 +7,60 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.support.HttpRequestHandlerServlet;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @Service
-public class PhotoEffectService {
+public class PhotoEffectService{
+    @Autowired private ProcessingUtils processingUtils;
+    @Autowired private LoggingService loggingService;
 
-    @Autowired
-    private ProcessingUtils processingUtils;
-
-    @Autowired
-    private LoggingService loggingService;
-
-    public ResponseEntity<byte[]> applyHueSaturationEffect(float hueAmount, float saturationAmount, MultipartFile imageFile) {
-        try {
+    public ResponseEntity<byte[]> applyHueSaturationEffect(float hv,float sv,MultipartFile imageFile){
+        try{
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            Pixel[][] modifiedImage = HueSaturationInterface.applyHueSaturation(inputImage,saturationAmount, saturationAmount); 
-            // ACTUAL WORK ENDS HERE
+            HueSaturationImplementation obj = new HueSaturationImplementation();
+            try{
+                obj.setParameter("H",hv);
+                obj.setParameter("S",sv);
+            }
+            catch (IllegalParameterException e){
+                e.printStackTrace();
+            }
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService);
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        } 
+        catch (IOException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> applyBrightnessEffect(float amount, MultipartFile imageFile) {
+    public ResponseEntity<byte[]> applyBrightnessEffect(float amount, MultipartFile imageFile){
         try {
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            brightnessImplementation obj =new brightnessImplementation();
-            try
-            {
+            BrightnessImplementation obj = new BrightnessImplementation();
+            try{
                 obj.setParameterValue(amount);
             }
-            catch(IllegalParameterException e)
-            {
+            catch(IllegalParameterException e){
                 e.printStackTrace();
             }
             Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService); 
-            // ACTUAL WORK ENDS HERE
-
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> applyContrastEffect(float amount, MultipartFile imageFile) {
-        try {
+    public ResponseEntity<byte[]> applyContrastEffect(float amount, MultipartFile imageFile){
+        try{
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            contrastImplementation obj = new contrastImplementation();
+            ContrastImplementation obj = new ContrastImplementation();
             try{
                 obj.setParameterValue(amount);
             }
@@ -79,156 +68,146 @@ public class PhotoEffectService {
                 e.printStackTrace();
             }
             Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService); 
-            // ACTUAL WORK ENDS HERE
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> applyFlipEffect(MultipartFile imageFile, int horizontalFlipValue, int verticalFlipValue) {
-        try {
+    public ResponseEntity<byte[]> applyFlipEffect(MultipartFile imageFile,int hf,int vf){
+        try{
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            Pixel[][] modifiedImage = FlipInterface.applyFlip(inputImage,horizontalFlipValue,verticalFlipValue); 
-            // ACTUAL WORK ENDS HERE
-
+            FlipImplementation obj = new FlipImplementation();
+            try{
+                obj.selectOptionValue("H",hf);
+                obj.selectOptionValue("V",vf);
+            }
+            catch (IllegalParameterException e){
+                e.printStackTrace();
+            }
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService);
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> applyGaussianBlurEffect(float radius, MultipartFile imageFile) {
-        try {
+    public ResponseEntity<byte[]> applyGaussianBlurEffect(float radius, MultipartFile imageFile){
+        try{
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            Pixel[][] modifiedImage = GaussianBlurInterface.applyGaussianBlur(inputImage,radius); 
-            // ACTUAL WORK ENDS HERE
-
+            GaussianBlurImplementation obj = new GaussianBlurImplementation();
+            try{
+                obj.setParameterValue(radius);
+            }
+            catch (IllegalParameterException e){
+                e.printStackTrace();
+            }
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService);
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> applyGrayscaleEffect(MultipartFile imageFile) {
+    public ResponseEntity<byte[]> applyGrayscaleEffect(MultipartFile imageFile){
         try {
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            Pixel[][] modifiedImage = GrayscaleInterface.applyGrayscale(inputImage); 
-            // ACTUAL WORK ENDS HERE
-
+            GrayscaleImplementation obj = new GrayscaleImplementation();
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService); 
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> applyInvertEffect(MultipartFile imageFile) {
-        try {
+    public ResponseEntity<byte[]> applyInvertEffect(MultipartFile imageFile){
+        try{
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            Pixel[][] modifiedImage = InvertInterface.applyInvert(inputImage); 
-            // ACTUAL WORK ENDS HERE
-
+            InvertImplementation obj = new InvertImplementation();
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService);
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        } 
+        catch (IOException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> applyRotationEffect(int value, MultipartFile imageFile) {
-        try {
+    public ResponseEntity<byte[]> applyRotationEffect(int v, MultipartFile imageFile){
+        try{
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            Pixel[][] modifiedImage = RotationInterface.applyRotation(inputImage, value); 
-            // ACTUAL WORK ENDS HERE
-
+            RotationImplementation obj = new RotationImplementation();
+            try{
+                obj.setParameterValue(v);
+            }
+            catch (IllegalParameterException e){
+                e.printStackTrace();
+            }
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService);
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        } 
+        catch (IOException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> applySepiaEffect(MultipartFile imageFile) {
-        try {
+    public ResponseEntity<byte[]> applySepiaEffect(MultipartFile imageFile){
+        try{
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            Pixel[][] modifiedImage = SepiaInterface.applySepia(inputImage); 
-            // ACTUAL WORK ENDS HERE
-
+            SepiaImplementation obj = new SepiaImplementation();
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService);
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> applySharpenEffect(float amount, MultipartFile imageFile) {
-        try {
+    public ResponseEntity<byte[]> applySharpenEffect(float amount, MultipartFile imageFile){
+        try{
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            Pixel[][] modifiedImage = SharpenInterface.applySharpen(inputImage, amount); 
-            // ACTUAL WORK ENDS HERE
-
+            SharpenImplementation obj = new SharpenImplementation();
+            try{
+                obj.setParameterValue(amount);
+            }
+            catch (IllegalParameterException e){
+                e.printStackTrace();
+            }
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService);
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<byte[]> getDominantColour(MultipartFile imageFile) {
-        try {
+    public ResponseEntity<byte[]> getDominantColour(MultipartFile imageFile){
+        try{
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
-
-            // ACTUAL WORK STARTS HERE
-            // TODO
-            Pixel[][] modifiedImage = DominantColourInterface.applyDominantColour(inputImage); 
-            // ACTUAL WORK ENDS HERE
-
+            DominantColourImplementation obj = new DominantColourImplementation();
+            Pixel[][] modifiedImage = obj.apply(inputImage,imageName,loggingService); 
             return processingUtils.postProcessing(modifiedImage);
-
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
