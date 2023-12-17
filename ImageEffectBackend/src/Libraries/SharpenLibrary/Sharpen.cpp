@@ -2,7 +2,6 @@
 #include "../Pixel.h"
 #include <algorithm>
 #include <vector>
-#include <math.h>
 using namespace std;
 void applySharpen(vector<vector<Pixel>> &image,float amount){
     float kernel[3][3] = {{-1,-1,-1},{-1,9,-1},{-1,-1,-1}};

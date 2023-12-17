@@ -1,8 +1,6 @@
 #include "Grayscale.h"
 #include "../Pixel.h"
-#include <algorithm>
 #include <vector>
-#include <math.h>
 using namespace std;
 void applyGrayscale(vector<vector<Pixel>> &image){
     for(int i=0;i<image.size();i++){

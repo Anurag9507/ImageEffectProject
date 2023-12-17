@@ -2,7 +2,7 @@
 #include "../Pixel.h"
 #include <algorithm>
 #include <vector>
-#include <math.h>
+#include <cmath>
 using namespace std;
 void applyHueSaturation(vector<vector<Pixel>> &image,float hv,float sv){
     float s = max(0.0,min(1.0,sv/100.0));

@@ -12,7 +12,7 @@ public class BrightnessImplementation implements SingleValueParameterizableEffec
         this.amount = amount;
     }
     public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){
-        loggingService.addLog(fileName, "Brightness", Float.toString(amount));
+        loggingService.addLog(fileName, "Brightness", Float.toString(amount-100));
         return BrightnessInterface.applyBrightness(image, amount);
     }
 }

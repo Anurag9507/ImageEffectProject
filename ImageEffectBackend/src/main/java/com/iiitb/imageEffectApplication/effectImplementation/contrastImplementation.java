@@ -12,7 +12,7 @@ public class ContrastImplementation implements SingleValueParameterizableEffect{
         this.amount = amount;
     }
     public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){
-        loggingService.addLog(fileName, "Contrast", Float.toString(amount));
+        loggingService.addLog(fileName, "Contrast", Float.toString(amount-100));
         return ContrastInterface.applyContrast(image, amount);
     }
 }
