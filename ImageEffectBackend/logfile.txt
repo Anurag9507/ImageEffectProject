@@ -1,0 +1,33 @@
+cat.png / Gaussian Blur / 0.0 / 2023-12-17T18:46:58.245055982
+cat.png / Gaussian Blur / 3.0 / 2023-12-17T18:47:01.329911087
+cat.png / Gaussian Blur / 7.0 / 2023-12-17T18:47:04.159022393
+cat.png / Gaussian Blur / 24.0 / 2023-12-17T18:47:09.594379003
+cat.png / Gaussian Blur / 50.0 / 2023-12-17T18:47:24.387222034
+cat.png / Brightness / 0.0 / 2023-12-17T18:47:40.392065315
+cat.png / Brightness / 87.0 / 2023-12-17T18:47:41.482357532
+cat.png / Brightness / 100.0 / 2023-12-17T18:47:43.085091157
+cat.png / Brightness / 100.0 / 2023-12-17T18:47:43.396264662
+cat.png / Brightness / -100.0 / 2023-12-17T18:47:44.971548386
+cat.png / Contrast / 61.0 / 2023-12-17T18:47:52.185832868
+cat.png / Contrast / 100.0 / 2023-12-17T18:47:53.869013683
+cat.png / Contrast / -88.0 / 2023-12-17T18:47:56.148875402
+cat.png / Contrast / -88.0 / 2023-12-17T18:47:57.214751209
+cat.png / Flip / Horizontal / 2023-12-17T18:48:03.747566153
+cat.png / Flip / Horizontal + Vertical / 2023-12-17T18:48:05.182187468
+cat.png / Grayscale / No options / 2023-12-17T18:48:13.021944444
+cat.png / Invert / No options / 2023-12-17T18:48:20.045668283
+cat.png / Rotation / 270 / 2023-12-17T18:48:26.521045911
+cat.png / Sepia / No options / 2023-12-17T18:48:32.509849577
+cat.png / Sharpen / 77.0 / 2023-12-17T18:48:39.154243795
+cat.png / Sharpen / 5.0 / 2023-12-17T18:48:43.075092030
+cat.png / Sharpen / 15.0 / 2023-12-17T18:48:47.018481629
+cat.png / Sharpen / 23.0 / 2023-12-17T18:48:48.730287732
+cat.png / Sharpen / 31.0 / 2023-12-17T18:48:50.679799536
+cat.png / Sharpen / 31.0 / 2023-12-17T18:48:51.842056637
+cat.png / Sharpen / 100.0 / 2023-12-17T18:48:53.682222932
+dog.jpg / Sharpen / 9.0 / 2023-12-17T18:49:01.720224499
+dog.jpg / Sharpen / 27.0 / 2023-12-17T18:49:03.800587282
+dog.jpg / Sharpen / 41.0 / 2023-12-17T18:49:05.702879367
+dog.jpg / Sharpen / 65.0 / 2023-12-17T18:49:07.162498956
+dog.jpg / Sharpen / 88.0 / 2023-12-17T18:49:08.703787641
+dog.jpg / Sharpen / 100.0 / 2023-12-17T18:49:10.392120423
