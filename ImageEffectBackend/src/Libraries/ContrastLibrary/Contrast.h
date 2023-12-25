@@ -3,5 +3,5 @@
 #include "../Pixel.h"
 #include <vector>
 using namespace std;
-void applyContrast(vector<vector<Pixel>>& image,float amount);
+void applyContrast(vector<vector<Pixel>>& image,float amount);//Function declaration
 #endif
