@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-vector<float> RGBtoHSV(float r, float g, float b) { 
+vector<float> RGBtoHSV(float r, float g, float b) { //Method to implement Hue Saturation
     r /= 255.0; g /= 255.0; b /= 255.0;
     float cmax=max({r,g,b}), cmin=min({r,g,b}), diff=cmax-cmin, h=-1, s=-1, v=cmax*100;
     if (cmax==cmin) h=0;
