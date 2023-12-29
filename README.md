@@ -1,7 +1,7 @@
 
-# Image Effects Project
+# ImageEffectApplication
 
-Image Effect Application is software that applies various image effects, such as contrast, saturation etc. to the image and stores logs of each applied effect.
+ImageEffectApplication is a software that applies various image effects, such as contrast, saturation etc. to the image and stores logs of each applied effect.
 
 We have implemented this project as part of our Programming-2 course.
 
@@ -13,9 +13,9 @@ We have implemented this project as part of our Programming-2 course.
 
 • Dominant Color
 
-• Flip
+• Flip (Horizontal/Vertical)
 
-• Blur
+• Gaussian Blur
 
 • Grayscale
 
@@ -23,11 +23,16 @@ We have implemented this project as part of our Programming-2 course.
 
 • Invert
 
-• Rotation
+• Rotation (0°/90°/180°/270°)
 
 • Sepia
 
 • Sharpen
+
+## Logs
+
+Logs for each applied effect can be found in the Logs section of the frontend. You can fiter out logs by the effect name, and you can also find all logs in a certain time period.
+
 ## Run Locally
 Clone the project
 ```bash
@@ -49,6 +54,10 @@ Run make command to compile code and generate libraries
 Use this if you have maven installed 
 ```bash
   sudo mvn clean package
+```
+Otherwise use
+```bash
+  ./mvnw clean package
 ```
 Run the application 
 ```bash
@@ -73,7 +82,7 @@ Start the server
 ```bash
   npm start
 ```
-Check the localhost url/port and open it in the local broswer.
+Check the localhost url/port and open it in your local broswer.
 
 
 
