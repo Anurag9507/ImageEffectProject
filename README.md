@@ -11,13 +11,13 @@ IMT2022103 Anurag Ramaswamy: Implemented Brightness and Contrast and completed l
 
 IMT2022076 Mohit Naik: Implemented Sharpen, HueSaturation and Dominant Color and completed logs for Sharpen, HueSaturation and Dominant Color.
 
-IMT2022008 Harsh Dhruv: Implemented Gaussian Blur and completed logs for Gaussian Blur.
+IMT2022008 Harsh Dhruv: Implemented Gaussian Blur and Flip and completed logs for Gaussian Blur.
 
 IMT2022065 Amruth Gadepalli: Implemented Sepia and Grayscale and completed logs for Sepia.
 
-IMT2022014 Shashank Tippanavar: Implemented Flip and Rotation and completed logs for Flip.
+IMT2022014 Shashank Tippanavar: Implemented Rotation and completed logs for Flip and Rotation.
 
-IMT2022046 Aryan Vaghasiya: Implemented Invert and completed logs for Invert, Rotation and Grayscale.
+IMT2022046 Aryan Vaghasiya: Implemented Invert and completed logs for Invert and Grayscale.
 
 ## Effects implemented
 
